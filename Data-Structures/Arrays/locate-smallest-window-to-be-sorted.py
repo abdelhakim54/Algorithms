@@ -21,3 +21,24 @@ def locate_smallest_window(arr):
     return (inf_bound, sup_bound)
 
 print(locate_smallest_window([3, 7, 5, 6, 9]))
+
+#This solution is O(n), better the the previous one 
+
+def locate_window_opt(arr):
+    maximum, minimum = arr[0], arr[-1]
+    right, left = None, None 
+    for i in range(len(arr)):
+        if arr[i] > maximum:
+            maximum = arr[i]
+        elif arr[i] < maximum:
+            right = i
+    
+    for i in range(len(arr) - 1, -1):
+        if arr[i] < minimum:
+            maximum = arr[i]
+        elif arr[i] > minimum:
+            left = i
+
+    return (left, right)
+
+print(locate_smallest_window([3, 7, 5, 6, 9]))
